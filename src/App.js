@@ -1,6 +1,6 @@
 import Header from "./components/Header/Header";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Container } from "./styles/GlobalComponents";
+import { MainContainer } from "./styles/GlobalComponents";
 import Hero from "./components/Hero/Hero";
 import NewUser from "./components/NewUser/NewUser";
 import { useDispatch } from "react-redux";
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Container>
+      <MainContainer>
         <Header />
         <Routes>
           <Route
@@ -32,7 +32,7 @@ function App() {
             }
           />
         </Routes>
-      </Container>
+      </MainContainer>
     </BrowserRouter>
   );
 }

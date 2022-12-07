@@ -11,7 +11,7 @@ export const Container = styled.div`
   }
 `;
 
-export const NavLink = styled.a`
+export const NavLink = styled.div`
   font-size: ${(props) => (props.main ? "4rem" : "3rem")};
   font-weight: ${(props) => (props.main ? "500" : null)};
   line-height: 32px;

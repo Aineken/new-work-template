@@ -6,7 +6,7 @@ import { Container, NavLink } from "./HeaderStyled";
 function Header() {
   return (
     <Container>
-      <Link to="/" style={{ display: "flex", alignItems: "center" }}>
+      <Link to="/">
         <NavLink main>Dashboard</NavLink>
       </Link>
     </Container>
