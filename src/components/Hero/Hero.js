@@ -57,13 +57,13 @@ function Hero({ setCurrentId }) {
       <PostsContainer>
         <PostDatas>
           <PostItem>
-            <span>ID</span>
+            <span className="headerBold">ID</span>
           </PostItem>
           <PostItem>
-            <span>Name</span>
+            <span className="headerBold">Name</span>
           </PostItem>
           <PostItem style={{ display: "flex" }}>
-            <span>Username</span>
+            <span className="headerBold">Username</span>
             <MdOutlineSortByAlpha
               onClick={() => setSorted((prev) => prev + 1)}
               style={{ marginLeft: ".5rem" }}
@@ -71,16 +71,16 @@ function Hero({ setCurrentId }) {
             />
           </PostItem>
           <PostItem>
-            <span>Email</span>
+            <span className="headerBold">Email</span>
           </PostItem>
           <PostItem>
-            <span>City</span>
+            <span className="headerBold">City</span>
           </PostItem>
           <PostItem>
-            <span>Edit</span>
+            <span className="headerBold">Edit</span>
           </PostItem>
           <PostItem>
-            <span>Delete</span>
+            <span className="headerBold">Delete</span>
           </PostItem>
 
           {posts.map((post, idx) => {

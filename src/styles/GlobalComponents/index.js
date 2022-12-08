@@ -93,7 +93,15 @@ export const PostItem = styled.div`
   span {
     font-size: 16px;
   }
+  .headerBold {
+    font-size: 18px;
+    font-weight: 700;
+  }
   @media ${(props) => props.theme.breakpoints.lg} {
+    .headerBold {
+      font-size: 16px;
+      font-weight: 700;
+    }
     span {
       font-size: 14px;
     }
