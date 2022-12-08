@@ -10,7 +10,7 @@ export default {
     primary1: "#fff",
     background1: "#181D31",
     accent1: "#F6F6C9",
-    button: "#001253",
+    button: "#181D31",
   },
   // Breakpoints for responsive design
   breakpoints: {

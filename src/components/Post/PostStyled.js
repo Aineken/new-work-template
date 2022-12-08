@@ -10,8 +10,9 @@ export const Button = styled.button`
   margin: auto;
   padding: 0.25rem 1rem;
   :hover {
-    background-color: #002ead;
+    background-color: ${(props) => props.theme.colors.background1};
     transition: 0.7s;
+    border: 2px solid ${(props) => props.theme.colors.background1};
   }
   @media ${(props) => props.theme.breakpoints.lg} {
     font-size: 20px;

@@ -10,7 +10,7 @@ export const PostsButton = styled.button`
   margin: 0 1em;
   padding: 0.25em 1em;
   :hover {
-    background-color: #002ead;
+    background-color: ${(props) => props.theme.colors.background1};
     transition: 0.7s;
   }
 
