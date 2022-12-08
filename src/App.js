@@ -2,18 +2,24 @@ import Header from "./components/Header/Header";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MainContainer } from "./styles/GlobalComponents";
 import Hero from "./components/Hero/Hero";
-import NewUser from "./components/NewUser/NewUser";
+import NewUser from "./components/UpdateUser/NewUser";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchPosts } from "./actions/posts";
+import EditUser from "./components/UpdateUser/EditUser";
 
 function App() {
+  const [newId, setNewId] = useState(11);
   const [currentId, setCurrentId] = useState(0);
+  const [firstLog, setFirstLog] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchPosts());
-  }, [dispatch]);
+    if (firstLog) {
+      dispatch(fetchPosts());
+      setFirstLog(false);
+    }
+  }, [firstLog, dispatch]);
 
   return (
     <BrowserRouter>
@@ -27,8 +33,12 @@ function App() {
           />
           <Route
             path="/register"
+            element={<NewUser newId={newId} setNewId={setNewId} />}
+          />
+          <Route
+            path="/edit"
             element={
-              <NewUser currentId={currentId} setCurrentId={setCurrentId} />
+              <EditUser currentId={currentId} setCurrentId={setCurrentId} />
             }
           />
         </Routes>

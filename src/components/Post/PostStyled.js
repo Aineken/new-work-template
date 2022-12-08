@@ -1,11 +1,5 @@
 import styled from "styled-components";
 
-export const PostContainer = styled.tr``;
-
-export const PostData = styled.td`
-  text-align: center;
-`;
-
 export const Button = styled.button`
   font-size: 24px;
   line-height: 30px;
@@ -18,5 +12,9 @@ export const Button = styled.button`
   :hover {
     background-color: #002ead;
     transition: 0.7s;
+  }
+  @media ${(props) => props.theme.breakpoints.lg} {
+    font-size: 20px;
+    line-height: 24px;
   }
 `;

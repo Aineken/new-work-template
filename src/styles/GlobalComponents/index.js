@@ -3,6 +3,7 @@ export const MainContainer = styled.div`
   max-width: 1280px;
   width: 100%;
   margin: auto;
+  padding: 3rem 2rem;
 `;
 
 const rotate360 = keyframes`
@@ -15,10 +16,9 @@ const rotate360 = keyframes`
 `;
 
 export const Container = styled.div`
-  margin-top: 5rem;
   display: flex;
   flex-direction: column;
-  background-color: #fff5e4;
+  background-color: #678983;
   border-radius: 5px;
 `;
 
@@ -27,14 +27,20 @@ export const Div1 = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 2rem 1rem;
+  border-bottom: 2px solid #e6ddc4;
 `;
 
 export const PostsTitle = styled.h4`
-  color: #ee6983;
+  color: #f0e9d2;
   font-size: 30px;
   line-height: 34px;
   width: max-content;
   margin: 0 1em;
+  padding: 0.25em 0;
+  @media ${(props) => props.theme.breakpoints.lg} {
+    font-size: 24px;
+    line-height: 28px;
+  }
 `;
 
 export const Spinner = styled.div`
@@ -54,27 +60,43 @@ export const Spinner = styled.div`
 export const PostsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  overflow-x: scroll;
+  width: calc(100%-4rem);
   color: #000;
   border-radius: 1rem;
   border: 1px solid #000;
   background-color: beige;
   margin: 1rem;
   padding: 2rem 1rem;
+  @media ${(props) => props.theme.breakpoints.lg} {
+  }
 `;
 
 export const PostDatas = styled.div`
-  display: grid;
-  grid-template-columns: 60px repeat(4, minmax(max-content, 1fr)) 120px 120px;
   width: 100%;
-  gap: 0.5rem;
-  border-bottom: 1px solid black;
+
+  display: grid;
+  grid-template-columns: 40px repeat(4, minmax(max-content, 1fr)) 100px 100px;
+
+  /* gap: 0.5rem; */
+  @media ${(props) => props.theme.breakpoints.lg} {
+    grid-template-columns: 20px repeat(4, minmax(max-content, 1fr)) 80px 80px;
+  }
 `;
 
 export const PostItem = styled.div`
-  display: grid;
+  display: flex;
   width: 100%;
   padding: 0.5rem;
 
   justify-content: center;
   align-items: center;
+  span {
+    font-size: 16px;
+  }
+  @media ${(props) => props.theme.breakpoints.lg} {
+    span {
+      font-size: 14px;
+    }
+  }
 `;

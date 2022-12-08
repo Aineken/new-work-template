@@ -17,15 +17,20 @@ export const NavLink = styled.div`
   line-height: 32px;
   display: flex;
   width: 100%;
+  margin-bottom: 2rem;
 
   justify-content: ${(props) => (props.left ? "start" : "center")};
   align-items: center;
-  color: ${(props) => (props.white ? "#fff" : "rgba(255, 255, 255, 0.75)")};
+  color: ${(props) => (props.white ? "#fff" : "#F0E9D2")};
   transition: 0.4s ease;
   &:hover {
     color: #fff;
     opacity: 1;
     cursor: pointer;
+  }
+  @media ${(props) => props.theme.breakpoints.lg} {
+    font-size: 3rem;
+    line-height: 28px;
   }
   @media ${(props) => props.theme.breakpoints.sm} {
     padding: 0.5rem;
