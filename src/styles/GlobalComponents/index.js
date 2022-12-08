@@ -64,7 +64,6 @@ export const PostsContainer = styled.div`
   width: calc(100%-4rem);
   color: #000;
   border-radius: 5px;
-
   background-color: beige;
   margin: 1rem;
   padding: 2rem 1rem;

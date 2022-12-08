@@ -67,7 +67,7 @@ export const ModalHeader = styled.div`
 `;
 
 export const ModalTitle = styled.span`
-  font-size: 36px;
+  font-size: 36px !important;
   font-weight: 500;
 `;
 

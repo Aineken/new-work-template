@@ -58,12 +58,6 @@ export const FormInput = styled.input`
   height: 40px;
   background-color: #fff;
   color: #000;
-  @media ${(props) => props.theme.breakpoints.lg} {
-    height: 30px;
-  }
-  @media ${(props) => props.theme.breakpoints.sm} {
-    width: 100%;
-  }
 `;
 
 export const Button = styled.button`
@@ -75,6 +69,7 @@ export const Button = styled.button`
   color: #fff;
   margin-left: 3rem;
   padding: 0.25rem 1rem;
+  height: 40px;
   :hover {
     background-color: #f8ffdb;
     transition: 0.7s;
