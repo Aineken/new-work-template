@@ -63,8 +63,8 @@ export const PostsContainer = styled.div`
   overflow-x: scroll;
   width: calc(100%-4rem);
   color: #000;
-  border-radius: 1rem;
-  border: 1px solid #000;
+  border-radius: 5px;
+
   background-color: beige;
   margin: 1rem;
   padding: 2rem 1rem;

@@ -35,7 +35,7 @@ export const ModalClose = styled.a`
 
 export const ModalContainer = styled.div`
   background: #678983;
-  border-radius: 0.1rem;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   margin: auto 15px;
@@ -74,15 +74,4 @@ export const ModalTitle = styled.span`
 export const ModalFooter = styled.div`
   padding: 10px 0px;
   text-align: right;
-`;
-
-export const Button = styled.button`
-  background: #7b2cbf;
-  color: white;
-  font-size: 1em;
-  margin: 10px;
-  padding: 5px 10px;
-  border: 2px solid #7b2cbf;
-  border-radius: 3px;
-  cursor: pointer;
 `;

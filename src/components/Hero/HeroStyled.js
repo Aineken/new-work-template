@@ -4,7 +4,7 @@ export const PostsButton = styled.button`
   background: transparent;
   font-size: 24px;
   line-height: 30px;
-  border-radius: 3px;
+  border-radius: 5px;
   border: 2px solid #f0e9d2;
   color: #f0e9d2;
   margin: 0 1em;

@@ -16,7 +16,7 @@ export const Form = styled.form`
   flex-direction: column;
   width: 500px;
   margin: auto;
-  border-radius: 10px;
+  border-radius: 5px;
   margin-top: 30px;
   position: relative;
   @media ${(props) => props.theme.breakpoints.sm} {
@@ -52,7 +52,7 @@ export const FormText = styled.p`
 
 export const FormInput = styled.input`
   width: 100%;
-  border-radius: 3px;
+  border-radius: 5px;
   border: 0;
   padding: 0.5rem 1rem;
   height: 40px;
@@ -69,7 +69,7 @@ export const FormInput = styled.input`
 export const Button = styled.button`
   font-size: 24px;
   line-height: 30px;
-  border-radius: 3px;
+  border-radius: 5px;
   background-color: ${(props) => (props.alter ? "#EE6983" : "#367E18")};
   border: 2px solid ${(props) => (props.alter ? "#EE6983" : "#367E18")};
   color: #fff;

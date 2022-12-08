@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Button = styled.button`
   font-size: 24px;
   line-height: 30px;
-  border-radius: 3px;
+  border-radius: 5px;
   background-color: ${(props) => (props.alter ? "#EE6983" : "#f2d388")};
   border: 2px solid ${(props) => (props.alter ? "#EE6983" : "#f2d388")};
   color: #fff;
