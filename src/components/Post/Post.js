@@ -1,51 +1,42 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { deletePost } from "../../app/posts";
-import { PostItem } from "../../styles/GlobalComponents";
+
+import { BodyData, TableRow } from "../../styles/GlobalComponents";
 import Modal from "./Modal/Modal";
 
 import { Button } from "./PostStyled";
 
-function Post({ setCurrentId, post: { id, name, username, email, address } }) {
+function Post({ post: { id, name, username, email, address } }) {
   const navigate = useNavigate();
 
   const [active, setActive] = useState(false);
 
   const setChange = (id) => {
-    console.log(id);
-    setCurrentId(id);
-    navigate("/edit", { state: false });
+    navigate(`/edit/${id}`);
   };
 
   const dispatch = useDispatch();
 
   const deleteBut = (deleteId) => {
     dispatch(deletePost(deleteId));
+    toast.warning("Post has been deleted!!!");
     setActive(false);
   };
 
   return (
-    <>
-      <PostItem>
-        <span>{id}</span>
-      </PostItem>
-      <PostItem>
-        <span>{name || "n/a"}</span>
-      </PostItem>
-      <PostItem>
-        <span>{username}</span>
-      </PostItem>
-      <PostItem>
-        <span>{email}</span>
-      </PostItem>
-      <PostItem>
-        <span>{address.city || "n/a"}</span>
-      </PostItem>
-      <PostItem>
+    <TableRow>
+      <BodyData>{id}</BodyData>
+      <BodyData>{name || "n/a"}</BodyData>
+      <BodyData>{username}</BodyData>
+      <BodyData>{email}</BodyData>
+      <BodyData>{address.city || "n/a"}</BodyData>
+      <BodyData>
         <Button onClick={() => setChange(id)}>Edit</Button>
-      </PostItem>
-      <PostItem>
+      </BodyData>
+      <BodyData>
         <Button onClick={() => setActive(true)} alter>
           Delete
         </Button>
@@ -61,8 +52,8 @@ function Post({ setCurrentId, post: { id, name, username, email, address } }) {
         >
           Do you really want to delete the user?
         </Modal>
-      </PostItem>
-    </>
+      </BodyData>
+    </TableRow>
   );
 }
 

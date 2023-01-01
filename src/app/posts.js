@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchPosts } from "../actions/posts";
+import {
+  fetchPosts,
+  // updatePost,
+  // deletePost,
+  // createPost,
+} from "../actions/posts";
 
 const initialState = {
   posts: [],
@@ -9,7 +14,7 @@ export const postsSlice = createSlice({
   name: "posts",
   initialState,
   reducers: {
-    addPost: (state, action) => {
+    createPost: (state, action) => {
       state.posts = [...state.posts, action.payload];
     },
     deletePost: (state, action) => {
@@ -25,10 +30,22 @@ export const postsSlice = createSlice({
     builder.addCase(fetchPosts.fulfilled, (state, action) => {
       state.posts = action.payload;
     });
+    //Create Post - Update Post and Delete Post
+    // .addCase(createPost.fulfilled, (state, action) => {
+    //   state.posts = [...state.posts, action.payload];
+    // })
+    // .addCase(updatePost.fulfilled, (state, action) => {
+    //   state.posts = state.posts.map((post) =>
+    //     post.id === action.payload.id ? action.payload : post
+    //   );
+    // })
+    // .addCase(deletePost.fulfilled, (state, action) => {
+    //   state.posts = state.posts.filter((post) => post.id !== action.payload);
+    // });
   },
 });
 
 export const selectAllPosts = (state) => state.posts.posts;
-export const { addPost, deletePost, updatePost } = postsSlice.actions;
+export const { createPost, deletePost, updatePost } = postsSlice.actions;
 
 export default postsSlice.reducer;

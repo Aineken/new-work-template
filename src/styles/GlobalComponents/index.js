@@ -30,19 +30,6 @@ export const Div1 = styled.div`
   border-bottom: 2px solid #e6ddc4;
 `;
 
-export const PostsTitle = styled.h4`
-  color: #f0e9d2;
-  font-size: 30px;
-  line-height: 34px;
-  width: max-content;
-  margin: 0 1em;
-  padding: 0.25em 0;
-  @media ${(props) => props.theme.breakpoints.lg} {
-    font-size: 24px;
-    line-height: 28px;
-  }
-`;
-
 export const Spinner = styled.div`
   animation: ${rotate360} 1s linear infinite;
   transform: translateZ(0);
@@ -57,53 +44,39 @@ export const Spinner = styled.div`
   border-radius: 50%;
 `;
 
-export const PostsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+//Table data
+export const PostsTable = styled.table`
+  width: 100%;
   overflow-x: scroll;
-  width: calc(100%-4rem);
-  color: #000;
+  color: rgb(0, 0, 0);
   border-radius: 5px;
   background-color: beige;
   margin: 1rem;
-  padding: 2rem 1rem;
-  @media ${(props) => props.theme.breakpoints.lg} {
-  }
 `;
 
-export const PostDatas = styled.div`
-  width: 100%;
+export const TableHead = styled.thead``;
+export const TableBody = styled.thead``;
 
-  display: grid;
-  grid-template-columns: 40px repeat(4, minmax(max-content, 1fr)) 100px 100px;
+export const TableRow = styled.tr``;
 
-  /* gap: 0.5rem; */
-  @media ${(props) => props.theme.breakpoints.lg} {
-    grid-template-columns: 20px repeat(4, minmax(max-content, 1fr)) 80px 80px;
-  }
+export const HeadData = styled.th`
+  font-size: 18px;
 `;
-
-export const PostItem = styled.div`
-  display: flex;
-  width: 100%;
+export const BodyData = styled.td`
   padding: 0.5rem;
+  font-size: 16px;
+  text-align: center;
+`;
 
-  justify-content: center;
-  align-items: center;
-  span {
-    font-size: 16px;
-  }
-  .headerBold {
-    font-size: 18px;
-    font-weight: 700;
-  }
+export const PostsTitle = styled.h4`
+  color: #f0e9d2;
+  font-size: 30px;
+  line-height: 34px;
+  width: max-content;
+  margin: 0 1em;
+  padding: 0.25em 0;
   @media ${(props) => props.theme.breakpoints.lg} {
-    .headerBold {
-      font-size: 16px;
-      font-weight: 700;
-    }
-    span {
-      font-size: 14px;
-    }
+    font-size: 24px;
+    line-height: 28px;
   }
 `;

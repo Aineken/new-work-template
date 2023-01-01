@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { addPost } from "../../app/posts";
+import { toast } from "react-toastify";
+import { createPost } from "../../app/posts";
+// import { v4 as uuid } from "uuid";
 
 import { Container, Div1, PostsTitle } from "../../styles/GlobalComponents";
 import {
@@ -13,8 +15,10 @@ import {
   FormInput,
   FormText,
 } from "./UserStyled";
+import { store } from "../../app/store";
+import { table } from "../../utils/constants";
 
-function NewUser({ newId, setNewId }) {
+function NewUser() {
   const navigate = useNavigate();
 
   const [postData, setPostData] = useState({
@@ -29,13 +33,31 @@ function NewUser({ newId, setNewId }) {
 
   const dispatch = useDispatch();
 
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    setPostData({ ...postData, [name]: value });
+  };
+
+  const {
+    posts: { posts },
+  } = store.getState();
+
+  let myId = table;
+  posts.forEach((post) => {
+    myId = myId.filter((num) => num !== post.id);
+  });
+
+  // for (let i = 0; i < posts.length; i++) {
+  //   myId = myId.filter((num) => num !== posts[i].id);
+  // }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addPost(postData));
-    console.log("submit");
-    setNewId((prev) => prev + 1);
-    navigate("/", { state: false });
+    dispatch(createPost(postData));
+    toast.success("Post created succesfully");
+    navigate("/");
   };
+
   return (
     <Container>
       <Div1>
@@ -53,9 +75,7 @@ function NewUser({ newId, setNewId }) {
             <FormText>Name</FormText>
             <FormInput
               value={postData.name}
-              onChange={(e) =>
-                setPostData({ ...postData, name: e.target.value })
-              }
+              onChange={handleInput}
               type="text"
               name="name"
             />
@@ -66,9 +86,7 @@ function NewUser({ newId, setNewId }) {
               value={postData.username}
               name="username"
               type="text"
-              onChange={(e) =>
-                setPostData({ ...postData, username: e.target.value })
-              }
+              onChange={handleInput}
               required
             />
           </FormDiv>
@@ -79,9 +97,7 @@ function NewUser({ newId, setNewId }) {
               name="email"
               type="email"
               required
-              onChange={(e) =>
-                setPostData({ ...postData, email: e.target.value })
-              }
+              onChange={handleInput}
             />
           </FormDiv>
           <FormDiv>
@@ -90,9 +106,9 @@ function NewUser({ newId, setNewId }) {
               value={postData.address.city}
               name="city"
               type="text"
-              onChange={(e) =>
-                setPostData({ ...postData, address: { city: e.target.value } })
-              }
+              onChange={(e) => {
+                setPostData({ ...postData, address: { city: e.target.value } });
+              }}
             />
           </FormDiv>
           <Div3>
@@ -101,7 +117,9 @@ function NewUser({ newId, setNewId }) {
             </Link>
             <Button
               type="submit"
-              onClick={() => setPostData({ ...postData, id: newId })}
+              onClick={() => {
+                setPostData({ ...postData, id: myId[0] });
+              }}
             >
               Submit
             </Button>

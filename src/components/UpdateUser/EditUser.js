@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { updatePost } from "../../app/posts";
+
 import { Container, Div1, PostsTitle } from "../../styles/GlobalComponents";
 import {
   Button,
@@ -13,7 +15,9 @@ import {
   FormText,
 } from "./UserStyled";
 
-function EditUser({ currentId, setCurrentId }) {
+function EditUser() {
+  const { id } = useParams();
+
   const navigate = useNavigate();
 
   const [postData, setPostData] = useState({
@@ -25,19 +29,28 @@ function EditUser({ currentId, setCurrentId }) {
     },
   });
 
-  const post = useSelector(({ posts }) =>
-    currentId ? posts.posts.find((text) => text.id === currentId) : null
-  );
+  // if RESTapi worked properly, i could fetch data directly from an API
+  // useEffect(() => {
+  //   getOnePost(id).then(({ data }) => setPostData(data));
+  // }, [id]);
 
-  const dispatch = useDispatch();
+  const post = useSelector(({ posts }) => {
+    return id ? posts.posts.find((text) => text.id.toString() === id) : null;
+  });
+
   useEffect(() => {
     if (post) setPostData(post);
   }, [post]);
 
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    setPostData({ ...postData, [name]: value });
+  };
+
+  const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(updatePost(postData));
-    setCurrentId(0);
     setPostData({
       name: "",
       username: "",
@@ -46,7 +59,8 @@ function EditUser({ currentId, setCurrentId }) {
         city: "",
       },
     });
-    navigate("/", { state: false });
+    toast.info("Post has been edited!!!");
+    navigate("/");
   };
 
   return (
@@ -60,9 +74,7 @@ function EditUser({ currentId, setCurrentId }) {
             <FormText>Name</FormText>
             <FormInput
               value={postData.name}
-              onChange={(e) =>
-                setPostData({ ...postData, name: e.target.value })
-              }
+              onChange={handleInput}
               type="text"
               name="name"
             />
@@ -72,9 +84,7 @@ function EditUser({ currentId, setCurrentId }) {
               value={postData.username}
               name="username"
               type="text"
-              onChange={(e) =>
-                setPostData({ ...postData, username: e.target.value })
-              }
+              onChange={handleInput}
               required
             />
 
@@ -84,9 +94,7 @@ function EditUser({ currentId, setCurrentId }) {
               name="email"
               type="email"
               required
-              onChange={(e) =>
-                setPostData({ ...postData, email: e.target.value })
-              }
+              onChange={handleInput}
             />
 
             <FormText>City</FormText>
@@ -94,9 +102,9 @@ function EditUser({ currentId, setCurrentId }) {
               value={postData.address.city}
               name="city"
               type="text"
-              onChange={(e) =>
-                setPostData({ ...postData, address: { city: e.target.value } })
-              }
+              onChange={(e) => {
+                setPostData({ ...postData, address: { city: e.target.value } });
+              }}
             />
           </FormDiv>
           <Div3>

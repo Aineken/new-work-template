@@ -4,43 +4,28 @@ import { MainContainer } from "./styles/GlobalComponents";
 import Hero from "./components/Hero/Hero";
 import NewUser from "./components/UpdateUser/NewUser";
 import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { fetchPosts } from "./actions/posts";
 import EditUser from "./components/UpdateUser/EditUser";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const [newId, setNewId] = useState(11);
-  const [currentId, setCurrentId] = useState(0);
-  const [firstLog, setFirstLog] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (firstLog) {
-      dispatch(fetchPosts());
-      setFirstLog(false);
-    }
-  }, [firstLog, dispatch]);
+    dispatch(fetchPosts());
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
       <MainContainer>
+        <ToastContainer position="top-center" />
         <Header />
         <Routes>
-          <Route
-            exact
-            path="/"
-            element={<Hero setCurrentId={setCurrentId} />}
-          />
-          <Route
-            path="/register"
-            element={<NewUser newId={newId} setNewId={setNewId} />}
-          />
-          <Route
-            path="/edit"
-            element={
-              <EditUser currentId={currentId} setCurrentId={setCurrentId} />
-            }
-          />
+          <Route exact path="/" element={<Hero />} />
+          <Route path="/register" element={<NewUser />} />
+          <Route path="/edit/:id" element={<EditUser />} />
         </Routes>
       </MainContainer>
     </BrowserRouter>

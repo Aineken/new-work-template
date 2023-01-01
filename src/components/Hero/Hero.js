@@ -1,50 +1,50 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { selectLoading } from "../../app/loading";
 
 import {
   Container,
   Div1,
-  PostDatas,
-  PostItem,
-  PostsContainer,
+  HeadData,
+  PostsTable,
   PostsTitle,
   Spinner,
+  TableBody,
+  TableHead,
+  TableRow,
 } from "../../styles/GlobalComponents";
 import Post from "../Post/Post";
 import { PostsButton } from "./HeroStyled";
-import { MdOutlineSortByAlpha } from "react-icons/md";
 
-function Hero({ setCurrentId }) {
+function Hero() {
   const [sorted, setSorted] = useState(0);
 
+  const { noSort, asc, desc } = {
+    noSort: sorted % 3 === 0,
+    asc: sorted % 3 === 1,
+    desc: sorted % 3 === 2,
+  };
+
+  const sortFunction = (posts) => {
+    return [...posts.posts].sort((a, b) => {
+      const first = a.username.toLowerCase();
+      const second = b.username.toLowerCase();
+
+      if (first > second) return (asc && 1) || (desc && -1);
+      if (second > first) return (asc && -1) || (desc && 1);
+      return 0;
+    });
+  };
+
   const posts = useSelector(({ posts }) =>
-    sorted % 3 === 1
-      ? [...posts.posts].sort((a, b) => {
-          if (a.username.toLowerCase() > b.username.toLowerCase()) {
-            return 1;
-          } else if (b.username.toLowerCase() > a.username.toLowerCase()) {
-            return -1;
-          } else {
-            return 0;
-          }
-        })
-      : sorted % 3 === 2
-      ? [...posts.posts].sort((a, b) => {
-          if (b.username.toLowerCase() > a.username.toLowerCase()) {
-            return 1;
-          } else if (a.username.toLowerCase() > b.username.toLowerCase()) {
-            return -1;
-          } else {
-            return 0;
-          }
-        })
-      : posts.posts
+    asc || desc ? sortFunction(posts) : posts.posts
   );
 
-  return !posts.length ? (
-    <Spinner />
-  ) : (
+  const isLoading = useSelector(selectLoading);
+
+  return (
     <Container>
       <Div1>
         <PostsTitle>User list</PostsTitle>
@@ -54,40 +54,34 @@ function Hero({ setCurrentId }) {
         </Link>
       </Div1>
 
-      <PostsContainer>
-        <PostDatas>
-          <PostItem>
-            <span className="headerBold">ID</span>
-          </PostItem>
-          <PostItem>
-            <span className="headerBold">Name</span>
-          </PostItem>
-          <PostItem style={{ display: "flex" }}>
-            <span className="headerBold">Username</span>
-            <MdOutlineSortByAlpha
-              onClick={() => setSorted((prev) => prev + 1)}
-              style={{ marginLeft: ".5rem" }}
-              size={25}
-            />
-          </PostItem>
-          <PostItem>
-            <span className="headerBold">Email</span>
-          </PostItem>
-          <PostItem>
-            <span className="headerBold">City</span>
-          </PostItem>
-          <PostItem>
-            <span className="headerBold">Edit</span>
-          </PostItem>
-          <PostItem>
-            <span className="headerBold">Delete</span>
-          </PostItem>
+      <PostsTable>
+        <TableHead>
+          <TableRow>
+            <HeadData>ID</HeadData>
+            <HeadData>Name</HeadData>
+            <HeadData onClick={() => setSorted((prev) => prev + 1)}>
+              <span className="headerBold" style={{ marginRight: ".5rem" }}>
+                Username
+              </span>
+              {noSort && <span>⏺️</span>}
+              {asc && <span>🔼</span>}
+              {desc && <span>🔽</span>}
+            </HeadData>
+            <HeadData>Email</HeadData>
+            <HeadData>City</HeadData>
+            <HeadData>Edit</HeadData>
+            <HeadData>Delete</HeadData>
+          </TableRow>
+        </TableHead>
 
-          {posts.map((post, idx) => {
-            return <Post key={idx} setCurrentId={setCurrentId} post={post} />;
-          })}
-        </PostDatas>
-      </PostsContainer>
+        <TableBody>
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            posts.map((post) => <Post key={post.id} post={post} />)
+          )}
+        </TableBody>
+      </PostsTable>
     </Container>
   );
 }
