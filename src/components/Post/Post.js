@@ -28,7 +28,7 @@ function Post({ post: { id, name, username, email, address } }) {
 
   return (
     <TableRow>
-      <BodyData>{id}</BodyData>
+      <BodyData className="fixed-side">{id}</BodyData>
       <BodyData>{name || "n/a"}</BodyData>
       <BodyData>{username}</BodyData>
       <BodyData>{email}</BodyData>

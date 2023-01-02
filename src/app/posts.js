@@ -8,6 +8,7 @@ import {
 
 const initialState = {
   posts: [],
+  loading: true,
 };
 
 export const postsSlice = createSlice({
@@ -27,9 +28,19 @@ export const postsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchPosts.fulfilled, (state, action) => {
-      state.posts = action.payload;
-    });
+    builder
+      .addCase(fetchPosts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.posts = action.payload;
+      })
+      .addCase(fetchPosts.rejected, (state, action) => {
+        state.loading = false;
+        state.posts = action.payload;
+      })
+      .addCase(fetchPosts.pending, (state, action) => {
+        state.loading = true;
+        state.posts = action.payload;
+      });
     //Create Post - Update Post and Delete Post
     // .addCase(createPost.fulfilled, (state, action) => {
     //   state.posts = [...state.posts, action.payload];

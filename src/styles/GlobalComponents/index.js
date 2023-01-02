@@ -14,26 +14,9 @@ const rotate360 = keyframes`
     transform: rotate(360deg);
   }
 `;
-
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: #678983;
-  border-radius: 5px;
-`;
-
-export const Div1 = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem 1rem;
-  border-bottom: 2px solid #e6ddc4;
-`;
-
 export const Spinner = styled.div`
   animation: ${rotate360} 1s linear infinite;
   transform: translateZ(0);
-
   border-top: 2px solid grey;
   border-right: 2px solid grey;
   border-bottom: 2px solid grey;
@@ -44,28 +27,66 @@ export const Spinner = styled.div`
   border-radius: 50%;
 `;
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: #678983;
+  border-radius: 5px;
+  width: 100%;
+`;
+
+export const Div1 = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 1rem;
+  border-bottom: 2px solid #e6ddc4;
+`;
+export const DivTable = styled.div`
+  width: 100%;
+  display: flex;
+
+  padding: 1rem;
+`;
+
 //Table data
 export const PostsTable = styled.table`
   width: 100%;
-  overflow-x: scroll;
   color: rgb(0, 0, 0);
   border-radius: 5px;
   background-color: beige;
-  margin: 1rem;
+  padding: 1rem;
+
+  @media ${(props) => props.theme.breakpoints.md} {
+    display: block;
+    overflow-x: scroll;
+  }
 `;
 
 export const TableHead = styled.thead``;
-export const TableBody = styled.thead``;
-
-export const TableRow = styled.tr``;
-
+export const TableBody = styled.tbody``;
+export const TableRow = styled.tr`
+  .fixed-side {
+  }
+`;
 export const HeadData = styled.th`
   font-size: 18px;
+  @media ${(props) => props.theme.breakpoints.lg} {
+    font-size: 16px;
+  }
 `;
 export const BodyData = styled.td`
   padding: 0.5rem;
   font-size: 16px;
   text-align: center;
+
+  @media ${(props) => props.theme.breakpoints.lg} {
+    font-size: 14px;
+    padding: 0.2rem;
+  }
+  @media ${(props) => props.theme.breakpoints.md} {
+    white-space: nowrap;
+  }
 `;
 
 export const PostsTitle = styled.h4`

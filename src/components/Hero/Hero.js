@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
-import { selectLoading } from "../../app/loading";
 
 import {
   Container,
   Div1,
+  DivTable,
   HeadData,
   PostsTable,
   PostsTitle,
@@ -42,7 +41,15 @@ function Hero() {
     asc || desc ? sortFunction(posts) : posts.posts
   );
 
-  const isLoading = useSelector(selectLoading);
+  const isLoading = useSelector((state) => state.posts.loading);
+
+  const spinner = (
+    <tr>
+      <td>
+        <Spinner />
+      </td>
+    </tr>
+  );
 
   return (
     <Container>
@@ -54,34 +61,34 @@ function Hero() {
         </Link>
       </Div1>
 
-      <PostsTable>
-        <TableHead>
-          <TableRow>
-            <HeadData>ID</HeadData>
-            <HeadData>Name</HeadData>
-            <HeadData onClick={() => setSorted((prev) => prev + 1)}>
-              <span className="headerBold" style={{ marginRight: ".5rem" }}>
-                Username
-              </span>
-              {noSort && <span>⏺️</span>}
-              {asc && <span>🔼</span>}
-              {desc && <span>🔽</span>}
-            </HeadData>
-            <HeadData>Email</HeadData>
-            <HeadData>City</HeadData>
-            <HeadData>Edit</HeadData>
-            <HeadData>Delete</HeadData>
-          </TableRow>
-        </TableHead>
+      <DivTable>
+        <PostsTable>
+          <TableHead>
+            <TableRow>
+              <HeadData className="fixed-side">ID</HeadData>
+              <HeadData>Name</HeadData>
+              <HeadData onClick={() => setSorted((prev) => prev + 1)}>
+                <span className="headerBold" style={{ marginRight: ".5rem" }}>
+                  Username
+                </span>
+                {noSort && <span>⏺️</span>}
+                {asc && <span>🔼</span>}
+                {desc && <span>🔽</span>}
+              </HeadData>
+              <HeadData>Email</HeadData>
+              <HeadData>City</HeadData>
+              <HeadData>Edit</HeadData>
+              <HeadData>Delete</HeadData>
+            </TableRow>
+          </TableHead>
 
-        <TableBody>
-          {isLoading ? (
-            <Spinner />
-          ) : (
-            posts.map((post) => <Post key={post.id} post={post} />)
-          )}
-        </TableBody>
-      </PostsTable>
+          <TableBody>
+            {isLoading
+              ? spinner
+              : posts.map((post) => <Post key={post.id} post={post} />)}
+          </TableBody>
+        </PostsTable>
+      </DivTable>
     </Container>
   );
 }
