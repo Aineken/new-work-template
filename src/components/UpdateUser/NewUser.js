@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { createPost } from "../../app/posts";
-// import { v4 as uuid } from "uuid";
+
 
 import { Container, Div1, PostsTitle } from "../../styles/GlobalComponents";
 import {
@@ -15,7 +15,7 @@ import {
   FormInput,
   FormText,
 } from "./UserStyled";
-import { store } from "../../app/store";
+import store  from "../../app/store";
 import { table } from "../../utils/constants";
 
 function NewUser() {

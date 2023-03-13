@@ -1,9 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   fetchPosts,
-  // updatePost,
-  // deletePost,
-  // createPost,
 } from "../actions/posts";
 
 const initialState = {
@@ -55,6 +52,10 @@ export const postsSlice = createSlice({
     // });
   },
 });
+
+
+
+
 
 export const selectAllPosts = (state) => state.posts.posts;
 export const { createPost, deletePost, updatePost } = postsSlice.actions;

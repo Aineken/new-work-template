@@ -14,7 +14,8 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchPosts());
+    dispatch(fetchPosts())
+
   }, [dispatch]);
 
   return (
@@ -23,7 +24,7 @@ function App() {
         <ToastContainer position="top-center" />
         <Header />
         <Routes>
-          <Route exact path="/" element={<Hero />} />
+          <Route path="/" element={<Hero />} />
           <Route path="/register" element={<NewUser />} />
           <Route path="/edit/:id" element={<EditUser />} />
         </Routes>
